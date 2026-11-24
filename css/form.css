@@ -1,0 +1,179 @@
+/* Стили формы заказа */
+
+/* Блок «Сделать заказ» — по центру, как main */
+.order {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+}
+
+.order-title {
+    margin-bottom: 32px;
+    text-align: center;
+    font-size: 26px;
+}
+
+/* Форма делится на 2 колонки */
+.order-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+/* Внутри колонки элементы идут друг под другом */
+.order-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.order-col h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ---------- Блок «Ваш заказ» ---------- */
+.order-empty {
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.order-summary {
+    margin-bottom: 24px;
+}
+
+.order-item {
+    margin-bottom: 14px;
+}
+
+.order-item-title {
+    font-weight: 700;
+}
+
+.order-total-value {
+    font-size: 20px;
+}
+
+/* Подписи к полям */
+.order-col label {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+/* Поля ввода и селекты одного размера */
+.order-col input[type="text"],
+.order-col input[type="email"],
+.order-col input[type="tel"],
+.order-col input[type="time"],
+.order-col select {
+    width: 280px;
+    max-width: 100%;
+    height: 34px;
+    margin-bottom: 18px;
+    padding: 0 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.order-col textarea {
+    width: 280px;
+    max-width: 100%;
+    height: 110px;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical; /* тянуть можно только по высоте */
+}
+
+/* Рамка tomato у поля, в котором стоит курсор */
+.order-col input:focus,
+.order-col select:focus,
+.order-col textarea:focus {
+    outline: none;
+    border-color: tomato;
+}
+
+/* Чекбокс и радиокнопки стоят в строку со своей подписью */
+.checkbox-row,
+.radio-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.radio-row {
+    margin-bottom: 6px;
+}
+
+.checkbox-row label,
+.radio-row label {
+    margin-bottom: 0;
+}
+
+/* Чекбокс и радио красим в акцентный цвет */
+.order-col input[type="checkbox"],
+.order-col input[type="radio"] {
+    accent-color: tomato;
+}
+
+/* Мелкая подсказка курсивом под полем */
+.hint {
+    margin: -12px 0 18px;
+    font-size: 12px;
+    font-style: italic;
+    color: #555;
+}
+
+/* Группа переключателей без стандартной рамки */
+.delivery-type {
+    margin: 0 0 18px;
+    padding: 0;
+    border: none;
+}
+
+.delivery-type legend {
+    margin-bottom: 8px;
+    padding: 0;
+    font-size: 15px;
+}
+
+/* Кнопки «Сбросить» и «Отправить» */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.form-buttons button {
+    padding: 6px 22px;
+    border: 1px solid #111;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form-buttons button:hover {
+    border-color: tomato;
+    background-color: tomato;
+    color: #fff;
+}
+
+/* Телефоны: колонки встают друг под друга */
+@media (max-width: 600px) {
+    .order {
+        padding: 0 20px 40px;
+    }
+
+    .order-form {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

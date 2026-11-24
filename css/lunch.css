@@ -1,0 +1,182 @@
+/* Стили только для страницы «Собрать ланч» */
+
+/* ---------- Сетка карточек (section > div) ---------- */
+.dishes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 равные колонки */
+    gap: 10px;                          /* отступ между карточками */
+}
+
+/* ---------- Доступные комбо ---------- */
+.combos-title {
+    text-align: center;
+}
+
+/* 3 варианта ланча в каждой строке */
+.combo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 10px;
+}
+
+/* Блюда одного варианта стоят в ряд */
+.combo {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Картинка над подписью */
+.combo-dish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.combo-dish img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 4px;
+    transition: transform 0.3s; /* плавное изменение */
+}
+
+/* При наведении картинка поднимается и увеличивается */
+.combo-dish img:hover {
+    transform: translateY(-6px) scale(1.15);
+}
+
+.combo-dish p {
+    font-size: 14px;
+    white-space: nowrap; /* «Главное блюдо» не переносится */
+}
+
+/* Подпись про десерты — на 2 пункта меньше */
+.combo-dish .combo-note {
+    font-size: 12px;
+    font-style: italic;
+    white-space: normal;
+}
+
+/* ---------- Фильтры ---------- */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter {
+    padding: 6px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.filter:hover {
+    border-color: tomato;
+    color: tomato;
+}
+
+/* Выбранный фильтр */
+.filter.active {
+    border-color: tomato;
+    background-color: tomato;
+    color: #fff;
+}
+
+/* Карточка, скрытая фильтром */
+.dish.is-hidden {
+    display: none;
+}
+
+/* ---------- Карточка блюда (section > div > div) ---------- */
+.dish {
+    display: flex;
+    flex-direction: column;   /* элементы друг под другом */
+    padding: 30px 40px;       /* 30px сверху/снизу, 40px слева/справа */
+    border: 2px solid transparent; /* невидимая рамка, чтобы при hover блок не «прыгал» */
+    border-radius: 35px;
+    cursor: pointer;
+    filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+    background-color: #fff;
+}
+
+/* При наведении рамка становится видимой */
+.dish:hover {
+    border-color: tomato;
+}
+
+/* Выбранное блюдо — такая же рамка, как при наведении */
+.dish.selected {
+    border-color: tomato;
+}
+
+/* Контекстный селектор: кнопка внутри карточки, на которую навели */
+.dish:hover button {
+    background-color: tomato;
+    color: #fff;
+}
+
+/* Картинка на всю ширину карточки */
+.dish img {
+    width: 100%;
+    border-radius: 35px;
+    margin-bottom: 16px;
+}
+
+/* Цена */
+.dish-price {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Название занимает всё свободное место по высоте —
+   поэтому вес и кнопка во всех карточках ряда стоят на одном уровне */
+.dish-name {
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+/* Вес / объём — серым */
+.dish-weight {
+    color: #888;
+}
+
+/* Кнопка «Добавить» */
+.dish button {
+    margin-top: 10px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1eee9;
+    font-family: inherit; /* у кнопок свой шрифт по умолчанию — берём шрифт сайта */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ---------- Адаптивность ---------- */
+
+/* Планшеты: 2 колонки */
+@media (max-width: 800px) {
+    .dishes,
+    .combo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Телефоны: 1 колонка, заголовки разделов по центру */
+@media (max-width: 600px) {
+    .dishes,
+    .combo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-section h2 {
+        text-align: center;
+    }
+}

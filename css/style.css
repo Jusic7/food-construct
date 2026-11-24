@@ -1,9 +1,16 @@
+/* Общие стили для всех страниц сайта */
+
 /* Сброс: размеры блоков считаются вместе с padding и рамкой */
 * {
     box-sizing: border-box;
 }
 
+/* body — flex-колонка высотой минимум в экран:
+   так футер всегда прижат к низу */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     font-family: 'Manrope', Arial, sans-serif;
     font-size: 16px;
@@ -15,6 +22,7 @@ body {
 /* Шапка и основная часть — по центру, ограниченной ширины */
 header,
 main {
+    width: 100%; /* во flex-колонке без этого блоки сжимаются по содержимому */
     max-width: 900px;
     margin: 0 auto;
     padding: 0 40px;
@@ -31,8 +39,11 @@ h1 {
     font-weight: 700;
 }
 
-nav a {
-    margin-right: 16px;
+/* Меню — флексбокс */
+nav {
+    display: flex;
+    flex-wrap: wrap; /* пункты переносятся на новую строку, если не помещаются */
+    gap: 15px;
 }
 
 /* ---------- Ссылки ---------- */
@@ -42,11 +53,17 @@ a {
 }
 
 a:hover {
-    color: #e8572c;
+    color: tomato;
+}
+
+/* Пункт меню текущей страницы */
+nav a.active {
+    color: tomato;
 }
 
 /* ---------- Основная часть ---------- */
 main {
+    flex-grow: 1; /* main забирает всё свободное место — футер уходит вниз */
     padding-top: 32px;
     padding-bottom: 60px;
 }
@@ -65,8 +82,14 @@ p {
     margin: 0;
 }
 
+/* Все картинки — блочные и не шире своего контейнера */
 img {
     display: block;
+    max-width: 100%;
+}
+
+/* Картинка в блоке «О нас» на главной */
+.about-img {
     width: 100%;
     max-width: 500px;
     margin-bottom: 16px;
@@ -111,5 +134,52 @@ footer a {
 }
 
 footer a:hover {
-    color: #e8572c;
+    color: tomato;
+}
+
+/* ---------- Адаптивность (общая для обеих страниц) ---------- */
+
+/* Планшеты */
+@media (max-width: 800px) {
+    /* пункты меню по всей ширине с равными промежутками,
+       без отступов по краям */
+    nav {
+        justify-content: space-between;
+    }
+
+    .about-img {
+        width: 500px;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 600px) {
+    h1 {
+        text-align: center;
+    }
+
+    /* меню столбиком, пункты по центру */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        font-size: 20px; /* 16px + 4px */
+    }
+
+    .about-img {
+        width: 100%;
+    }
+
+    table {
+        font-size: 12px; /* 14px − 2px */
+    }
+}
+
+/* Маленькие телефоны: таблица без горизонтальной прокрутки */
+@media (max-width: 400px) {
+    table {
+        font-size: 10px; /* ещё −2px */
+    }
 }
